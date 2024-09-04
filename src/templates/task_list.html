@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Minhas Tarefas</title>
+</head>
+
+<body>
+    <h2>Minhas Tarefas</h2>
+    <a href="{% url 'task_create' %}">Criar Tarefa</a>
+
+    <ul>
+        {% for task in tasks %}
+        <li>
+            <strong>{{ task.titulo }}</strong><br>
+            {{ task.descricao }}<br>
+            Status: {{ task.stat }}<br>
+            Criada em: {{ task.datacriacao|date:"d/m/Y H:i" }}<br>
+            <a href="{% url 'task_update' task.id %}">Editar</a> |
+            <a href="{% url 'task_delete' task.id %}">Excluir</a>
+        </li>
+        {% empty %}
+        <li>Você não possui tarefas no momento.</li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
